@@ -23,7 +23,7 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
         run: node scripts/backup-storage.mjs "proofs-$(date -u +%Y%m%d).tar.gz.enc"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: backup-storage
           path: proofs-*.tar.gz.enc

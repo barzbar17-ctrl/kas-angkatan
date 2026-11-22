@@ -11,7 +11,7 @@ jobs:
   database:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Dump terenkripsi
         env:
           # Pooler MODE SESI (bukan transaksi); bila runner hanya IPv4, jangan pakai koneksi langsung Supabase (V-4).

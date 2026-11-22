@@ -23,7 +23,7 @@ jobs:
       TEST_DB_OWNER_URL: postgres://postgres:postgres@localhost:5432/kas_test
       TEST_DB_APP_URL: postgres://app_backend:app_backend_test@localhost:5432/kas_test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: 22

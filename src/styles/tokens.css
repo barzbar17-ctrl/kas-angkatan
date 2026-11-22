@@ -1,0 +1,117 @@
+/* Sumber kebenaran token: docs/design.md bagian 4. Jangan menulis ulang nilai di komponen. */
+:root {
+  /* 4.1 Warna */
+  --c-canvas: #f4f3fa;
+  --c-surface-hi: #ffffff;
+  --c-surface-lo: #f6f4fd;
+  --c-sunken: #f1effa;
+
+  --p-50: #eeeafe;
+  --p-100: #ddd5fc;
+  --p-200: #bfb0f8;
+  --p-300: #9f8cf3;
+  --p-400: #8670ee;
+  --p-500: #6c55e6;
+  --p-600: #5842d0;
+  --p-700: #4533a8;
+  --g-start: #7460eb;
+  --g-end: #5e47dc;
+
+  --m-50: #e3f7ee;
+  --m-100: #cbf0df;
+  --m-200: #9de5c3;
+  --m-500: #58c493;
+  --m-600: #1b8a5f;
+  --m-700: #176f4c;
+
+  --o-50: #fff0e2;
+  --o-100: #ffe0c8;
+  --o-200: #ffb790;
+  --o-500: #f0875a;
+  --o-600: #c4621e;
+  --o-700: #9a4713;
+
+  --r-50: #ffe9ee;
+  --r-700: #a82f49;
+
+  --k-900: #1b1e4b;
+  --k-700: #3b3f6e;
+  --k-600: #5a5e86;
+  --k-500: #62668d;
+  --k-300: #a9acc8;
+
+  --sh-tint: 95 78 200;
+
+  /* 4.4 Radius */
+  --r-xs: 8px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --r-2xl: 24px;
+  --r-3xl: 32px;
+  --r-pill: 999px;
+
+  /* 4.5 Elevasi */
+  --el-1:
+    inset 1.5px 1.5px 2px rgb(255 255 255 / 0.95), inset -2px -3px 5px rgb(var(--sh-tint) / 0.09),
+    0 8px 16px -6px rgb(var(--sh-tint) / 0.16);
+  --el-2:
+    inset 2px 2px 3px rgb(255 255 255 / 0.95), inset -3px -4px 8px rgb(var(--sh-tint) / 0.1),
+    0 18px 34px -12px rgb(var(--sh-tint) / 0.2), 0 6px 12px -6px rgb(var(--sh-tint) / 0.1);
+  --el-3:
+    inset 3px 3px 4px rgb(255 255 255 / 0.98), inset -5px -6px 12px rgb(var(--sh-tint) / 0.12),
+    0 30px 56px -18px rgb(var(--sh-tint) / 0.26), 0 10px 20px -8px rgb(var(--sh-tint) / 0.12);
+  --el-sunken:
+    inset 3px 4px 8px rgb(var(--sh-tint) / 0.14), inset -3px -3px 6px rgb(255 255 255 / 0.95);
+  --el-primary:
+    inset 0 2px 2px rgb(255 255 255 / 0.42), inset 0 -4px 8px rgb(36 20 140 / 0.3),
+    0 14px 24px -8px rgb(94 71 220 / 0.55), 0 4px 8px -2px rgb(94 71 220 / 0.3);
+  --el-primary-pressed:
+    inset 0 3px 8px rgb(36 20 140 / 0.38), 0 5px 10px -6px rgb(94 71 220 / 0.45);
+  --el-secondary:
+    inset 2px 2px 2px rgb(255 255 255 / 0.9), inset -2px -3px 6px rgb(var(--sh-tint) / 0.14),
+    0 10px 18px -8px rgb(var(--sh-tint) / 0.25);
+  --el-tile-purple:
+    inset 2px 2px 2px rgb(255 255 255 / 0.9), inset -2px -3px 6px rgb(88 66 208 / 0.18),
+    0 8px 14px -6px rgb(88 66 208 / 0.32);
+  --el-tile-mint:
+    inset 2px 2px 2px rgb(255 255 255 / 0.9), inset -2px -3px 5px rgb(11 107 71 / 0.14),
+    0 8px 14px -6px rgb(11 107 71 / 0.28);
+  --el-tile-peach:
+    inset 2px 2px 2px rgb(255 255 255 / 0.9), inset -2px -3px 5px rgb(184 72 26 / 0.14),
+    0 8px 14px -6px rgb(184 72 26 / 0.28);
+  --el-tile-rose:
+    inset 2px 2px 2px rgb(255 255 255 / 0.9), inset -2px -3px 5px rgb(168 47 73 / 0.14),
+    0 8px 14px -6px rgb(168 47 73 / 0.26);
+
+  /* Gradasi permukaan */
+  --g-surface: linear-gradient(145deg, #ffffff 0%, #f6f4fd 100%);
+  --g-primary: linear-gradient(180deg, #7460eb 0%, #5e47dc 100%);
+  --g-secondary: linear-gradient(180deg, #f1eeff 0%, #e4defc 100%);
+  --g-tile-purple: linear-gradient(145deg, #eeeafe 0%, #ddd5fc 100%);
+  --g-tile-mint: linear-gradient(145deg, #e3f7ee 0%, #cbf0df 100%);
+  --g-tile-peach: linear-gradient(145deg, #fff0e2 0%, #ffe0c8 100%);
+  --g-tile-rose: linear-gradient(145deg, #ffeef2 0%, #ffdce4 100%);
+  --g-progress: linear-gradient(90deg, #8670ee 0%, #6c55e6 100%);
+
+  /* 4.6 Gerak (nilai yang dipakai CSS; GSAP memakai konstanta di lib/motion.ts) */
+  --dur-fast: 0.15s;
+  --dur-base: 0.3s;
+  --dur-slow: 0.5s;
+
+  /* 4.7 Lapisan */
+  --z-decor: 0;
+  --z-content: 1;
+  --z-nav: 10;
+  --z-dropdown: 20;
+  --z-backdrop: 30;
+  --z-sheet: 40;
+  --z-toast: 50;
+}
+
+/* PF-11: mode ringan hanya mengganti token, bukan komponen. */
+:root[data-lite] {
+  --el-2: inset 2px 2px 3px rgb(255 255 255 / 0.95), 0 14px 26px -12px rgb(var(--sh-tint) / 0.2);
+  --el-3: inset 3px 3px 4px rgb(255 255 255 / 0.98), 0 22px 40px -16px rgb(var(--sh-tint) / 0.26);
+}

@@ -1,0 +1,31 @@
+name: Backup storage
+on:
+  schedule:
+    - cron: '47 19 * * 0' # Minggu 02.47 WIB
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  storage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --omit=dev
+      - name: Arsip terenkripsi bucket bukti
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: node scripts/backup-storage.mjs "proofs-$(date -u +%Y%m%d).tar.gz.enc"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backup-storage
+          path: proofs-*.tar.gz.enc
+          retention-days: 30
+          if-no-files-found: error

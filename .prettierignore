@@ -1,0 +1,8 @@
+dist
+coverage
+node_modules
+docs/*.md
+CLAUDE.md
+package-lock.json
+public/icons.svg
+public/decor
